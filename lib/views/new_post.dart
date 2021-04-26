@@ -1,4 +1,7 @@
+import 'package:captainwell_blog/models/post.dart';
+import 'package:captainwell_blog/views/post_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NewPost extends StatefulWidget {
   @override
@@ -6,12 +9,15 @@ class NewPost extends StatefulWidget {
 }
 
 class _NewPostState extends State<NewPost> {
+  TextEditingController _title = TextEditingController();
+  TextEditingController _content = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF2A364D),
       appBar: AppBar(
-        title: Text("ارسال مطلب جدید"),
+        title: Text("New Post"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -21,9 +27,6 @@ class _NewPostState extends State<NewPost> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            textDirection: TextDirection.rtl,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(28, 10, 28, 10),
@@ -32,7 +35,7 @@ class _NewPostState extends State<NewPost> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        "عنوان:",
+                        "Title:",
                         style: TextStyle(
                             fontSize: 18, color: const Color(0XFFAABBD0)),
                       ),
@@ -40,13 +43,13 @@ class _NewPostState extends State<NewPost> {
                     SizedBox(height: 9),
                     Container(
                       child: TextField(
+                        controller: _title,
                         textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
                         style: TextStyle(height: 2.0, color: Colors.white),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFF323e54),
-                          hintText: "عنوان مطلب جدید خود را وارد کنید.",
+                          hintText: "Please enter your title.",
                           hintStyle: TextStyle(
                             color: const Color(0XFF8492AA),
                             fontSize: 16,
@@ -72,7 +75,7 @@ class _NewPostState extends State<NewPost> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        "متن:",
+                        "Content:",
                         style: TextStyle(
                             fontSize: 18, color: const Color(0XFFAABBD0)),
                       ),
@@ -80,15 +83,15 @@ class _NewPostState extends State<NewPost> {
                     SizedBox(height: 9),
                     Container(
                       child: TextField(
+                        controller: _content,
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
                         textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
                         style: TextStyle(height: 2.0, color: Colors.white),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFF323e54),
-                          hintText: "متن مطلب جدید خود را وارد کنید.",
+                          hintText: "Please enter your content.",
                           hintStyle: TextStyle(
                             color: const Color(0XFF8492AA),
                             fontSize: 16,
@@ -120,13 +123,22 @@ class _NewPostState extends State<NewPost> {
                           color: Color(0xFF3D72FE)),
                       child: FlatButton(
                         child: Text(
-                          "ارسال",
+                          "Post",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
                               fontSize: 18),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<PostsModel>()
+                              .addPost(_title.text, _content.text);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => PostPage(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Container(
@@ -137,7 +149,7 @@ class _NewPostState extends State<NewPost> {
                           color: Color(0xFF434A58)),
                       child: FlatButton(
                         child: Text(
-                          "انصراف",
+                          "Cancel",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,

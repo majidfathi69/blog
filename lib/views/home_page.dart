@@ -1,9 +1,21 @@
+import 'package:captainwell_blog/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'new_post.dart';
 import 'post_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final primary = Color(0xFF131A2A);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +43,7 @@ class HomePage extends StatelessWidget {
                       color: primary,
                     ),
                     child: Text(
-                      "وبلاگ کاپیتان",
+                      "Blog",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 24,
@@ -54,7 +66,7 @@ class HomePage extends StatelessWidget {
                     color: Color(0xFF3D72FE)),
                 child: FlatButton(
                   child: Text(
-                    "مطلب جدید",
+                    "New Post",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
@@ -62,10 +74,7 @@ class HomePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     showModalBottomSheet(
-                        context: context,
-                        builder: (context) => Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: NewPost()));
+                        context: context, builder: (context) => NewPost());
                   },
                 ),
               ),
@@ -77,101 +86,36 @@ class HomePage extends StatelessWidget {
   }
 
   Widget buildList(BuildContext context) {
-    String content = "قسمتی از متن مطلب در این قسمت نمایش داده می‌شود";
+    String content = "Part of the text is displayed in this section.";
+    List<Widget> postsWidget = context
+        .watch<PostsModel>()
+        .getPosts
+        .map(
+          (p) => Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.read<PostsModel>().fetchPostById(p.id);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => PostPage(),
+                    ),
+                  );
+                },
+                //onDoubleTap: , view image
+                child: Container(
+                  child: _buildPost('assets/images/${p.id % 6}.jpg', p.title,
+                      content, Color(0XFF2A364D), context),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+            ],
+          ),
+        )
+        .toList();
     return ListView(
       padding: const EdgeInsets.all(16.0),
-      children: <Widget>[
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Barcelona.jpg', "عنوان مطلب جدید",
-                content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Californie.jpg', "عنوان مطلب جدید",
-                content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Manchots.jpg', "عنوان مطلب جدید",
-                content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Mississipi.jpg', "عنوان مطلب جدید",
-                content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Mobula.jpg', "عنوان مطلب جدید",
-                content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PostPage(),
-                    )));
-          },
-          //onDoubleTap: , view image
-          child: Container(
-            child: _buildPost('assets/images/Tegallalang.jpg',
-                "عنوان مطلب جدید", content, Color(0XFF2A364D), context),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-      ],
+      children: postsWidget,
     );
   }
 
@@ -215,7 +159,6 @@ class HomePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 17.0,
                     ),
-                    textDirection: TextDirection.rtl,
                   ),
                   const SizedBox(height: 16.0),
                   Column(
@@ -233,7 +176,6 @@ class HomePage extends StatelessWidget {
                               fontWeight: FontWeight.normal,
                               fontSize: 15.0,
                             ),
-                            textDirection: TextDirection.rtl,
                           ),
                         ],
                       ),

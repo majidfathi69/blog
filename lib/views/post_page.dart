@@ -1,4 +1,6 @@
+import 'package:captainwell_blog/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'post_body.dart';
 
@@ -10,6 +12,7 @@ class PostPage extends StatefulWidget {
 class _PostPageState extends State<PostPage> {
   int _currentPage;
   final primary = Color(0xFF131A2A);
+  Post thePost;
 
   @override
   void initState() {
@@ -19,70 +22,56 @@ class _PostPageState extends State<PostPage> {
 
   @override
   Widget build(BuildContext context) {
+    thePost = context.watch<PostsModel>().getPost;
     return Scaffold(
       backgroundColor: Color(0xFF131A2A),
-      body: Stack(
-        children: <Widget>[
-          SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(top: 105),
+      body: thePost == null
+          ? Container()
+          : Stack(
+              children: <Widget>[
+                SingleChildScrollView(
+                  child: Container(
                     height: MediaQuery.of(context).size.height,
-                    width: double.infinity,
-                    child: _buildList(context),
+                    width: MediaQuery.of(context).size.width,
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(top: 105),
+                          height: MediaQuery.of(context).size.height,
+                          width: double.infinity,
+                          child: Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 20,
+                                left: 25,
+                                right: 25,
+                              ),
+                              child: PostBody(thePost: thePost),
+                            ),
+                          ),
+                        ),
+                        _buildHeader(context),
+                      ],
+                    ),
                   ),
-                  _buildHeader(context),
-                ],
-              ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildList(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              left: 25,
-              right: 25,
-            ),
-            child: PostBody(),
-          ),
-        ),
-      ],
     );
   }
 
   Container _buildHeader(BuildContext context) {
     return Container(
       height: 100,
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       decoration: BoxDecoration(
         color: primary,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Text(
-              "عنوان مطلب",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+      child: Text(
+        thePost.title,
+        style: TextStyle(
+            color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
   }

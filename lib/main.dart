@@ -1,33 +1,29 @@
+import 'package:captainwell_blog/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'views/information_payment.dart';
+import 'views/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => PostsModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    context.read<PostsModel>().fetchPosts();
     return MaterialApp(
       title: 'وبلاگ کاپیتان',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Directionality(
-        textDirection: TextDirection.rtl,
-        child: InformationPaymentPage(),
-      ),
+      home: HomePage(),
     );
   }
 }

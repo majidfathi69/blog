@@ -11,7 +11,7 @@ class _NewCommentState extends State<NewComment> {
     return Scaffold(
       backgroundColor: const Color(0xFF2A364D),
       appBar: AppBar(
-        title: Text("ثبت نظر"),
+        title: Text("Comment"),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -21,9 +21,6 @@ class _NewCommentState extends State<NewComment> {
         scrollDirection: Axis.vertical,
         children: <Widget>[
           Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.stretch,
-            textDirection: TextDirection.rtl,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(28, 10, 28, 10),
@@ -32,7 +29,7 @@ class _NewCommentState extends State<NewComment> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        "متن نظر:",
+                        "Comment",
                         style: TextStyle(
                           fontSize: 18,
                           color: const Color(0XFFAABBD0),
@@ -45,12 +42,11 @@ class _NewCommentState extends State<NewComment> {
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
                         textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl,
                         style: TextStyle(height: 2.0, color: Colors.white),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: const Color(0xFF323e54),
-                          hintText: "متن نظر خود را وارد کنید.",
+                          hintText: "Enter your comment.",
                           hintStyle: TextStyle(
                             color: const Color(0XFF8492AA),
                             fontSize: 16,
@@ -82,7 +78,7 @@ class _NewCommentState extends State<NewComment> {
                           color: Color(0xFF3D72FE)),
                       child: FlatButton(
                         child: Text(
-                          "ثبت",
+                          "Comment",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
@@ -99,7 +95,7 @@ class _NewCommentState extends State<NewComment> {
                           color: Color(0xFF434A58)),
                       child: FlatButton(
                         child: Text(
-                          "انصراف",
+                          "Cancel",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
