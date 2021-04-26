@@ -7,10 +7,21 @@ class PostsModel extends ChangeNotifier {
   /// Internal, private state of the cart. Stores the ids of each item.
   List<Post> _posts = [];
   Post _post;
+  int page = 1;
 
   /// The current catalog. Used to construct items from numeric ids.
   List<Post> get getPosts => _posts;
   Post get getPost => _post;
+
+  void prevPage() async {
+    page = page > 1 ? page - 1 : page;
+    fetchPosts();
+  }
+
+  void nexPage() async {
+    page = page + 1;
+    fetchPosts();
+  }
 
   /// The current total price of all items.
   int get postsCount => _posts.length;
@@ -55,7 +66,7 @@ class PostsModel extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      _post = Post.fromJson(jsonDecode(response.body));
+      _post = Post.fromJson(jsonDecode(response.body)[0]);
       notifyListeners();
     } else {
       throw Exception('Failed to load posts');
@@ -64,7 +75,7 @@ class PostsModel extends ChangeNotifier {
 
   void fetchPosts() async {
     var queryParameters = {
-      'page': '1',
+      'page': page.toString(),
       'limit': '10',
     };
     final response = await http.get(
