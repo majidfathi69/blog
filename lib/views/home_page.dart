@@ -1,5 +1,6 @@
 import 'package:captainwell_blog/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 import 'new_post.dart';
 import 'post_page.dart';
@@ -160,7 +161,16 @@ class _HomePageState extends State<HomePage> {
         .toList();
     return ListView(
       padding: const EdgeInsets.all(16.0),
-      children: postsWidget,
+      children: postsWidget.length != 0
+          ? postsWidget
+          : [
+              Center(
+                child: LoadingBouncingGrid.square(
+                  borderColor: Colors.cyan,
+                  size: 30.0,
+                ),
+              ),
+            ],
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:captainwell_blog/models/post.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animations/loading_animations.dart';
 import 'package:provider/provider.dart';
 
 import 'post_body.dart';
@@ -26,7 +27,12 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       backgroundColor: Color(0xFF131A2A),
       body: thePost == null
-          ? Container()
+          ? Center(
+              child: LoadingBouncingGrid.square(
+                borderColor: Colors.cyan,
+                size: 30.0,
+              ),
+            )
           : Stack(
               children: <Widget>[
                 SingleChildScrollView(

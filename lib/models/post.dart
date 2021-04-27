@@ -59,6 +59,10 @@ class PostsModel extends ChangeNotifier {
   }
 
   void fetchPostById(int id) async {
+    if (_post != null) {
+      _post = null;
+      notifyListeners();
+    }
     var queryParameters = {'id': id.toString()};
     final response = await http.get(
       Uri.https('607a9689bd56a60017ba2d1f.mockapi.io', 'api/v1/post',
@@ -74,6 +78,10 @@ class PostsModel extends ChangeNotifier {
   }
 
   void fetchPosts() async {
+    if (_posts.length != 0) {
+      _posts = [];
+      notifyListeners();
+    }
     var queryParameters = {
       'page': page.toString(),
       'limit': '10',
