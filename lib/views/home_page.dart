@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final primary = Color(0xFF131A2A);
+  bool _showFab = false;
 
   @override
   void initState() {
@@ -39,16 +40,48 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     alignment: Alignment.center,
                     height: 100,
-                    width: double.infinity,
+                    // width: double.infinity,
                     decoration: BoxDecoration(
                       color: primary,
                     ),
-                    child: Text(
-                      "Blog",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Container(
+                            width: 155,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: SwitchListTile(
+                                    title: const Text(
+                                      "Offline",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    value: _showFab,
+                                    onChanged: (bool value) {
+                                      setState(
+                                        () {
+                                          _showFab = value;
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Blog",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ),
                 ],
