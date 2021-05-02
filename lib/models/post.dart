@@ -58,6 +58,11 @@ class PostsModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void fetchPostByIdOfflineMode(int id) async {
+    _post = _posts.firstWhere((p) => p.id == id);
+    notifyListeners();
+  }
+
   void fetchPostById(int id) async {
     if (_post != null) {
       _post = null;

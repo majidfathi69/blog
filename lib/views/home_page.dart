@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     alignment: Alignment.center,
                     height: 100,
-                    // width: double.infinity,
                     decoration: BoxDecoration(
                       color: primary,
                     ),
@@ -174,7 +173,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               GestureDetector(
                 onTap: () {
-                  context.read<PostsModel>().fetchPostById(p.id);
+                  if (_showFab)
+                    context.read<PostsModel>().fetchPostByIdOfflineMode(p.id);
+                  else
+                    context.read<PostsModel>().fetchPostById(p.id);
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (BuildContext context) => PostPage(),
