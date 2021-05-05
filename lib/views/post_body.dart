@@ -73,7 +73,7 @@ class _PostBodyState extends State<PostBody> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(23)),
                     color: Color(0xFF3D72FE)),
-                child: FlatButton(
+                child: TextButton(
                   child: Text(
                     "Comment",
                     style: TextStyle(

@@ -76,7 +76,7 @@ class _NewCommentState extends State<NewComment> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(23)),
                           color: Color(0xFF3D72FE)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Comment",
                           style: TextStyle(
@@ -93,7 +93,7 @@ class _NewCommentState extends State<NewComment> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(23)),
                           color: Color(0xFF434A58)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Cancel",
                           style: TextStyle(
@@ -102,7 +102,9 @@ class _NewCommentState extends State<NewComment> {
                             fontSize: 18,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     ),
                   ],

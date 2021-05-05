@@ -119,9 +119,11 @@ class _NewPostState extends State<NewPost> {
                       height: 71,
                       width: 151,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(23)),
-                          color: Color(0xFF3D72FE)),
-                      child: FlatButton(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(23),
+                        ),
+                      ),
+                      child: OutlinedButton(
                         child: Text(
                           "Post",
                           style: TextStyle(
@@ -147,7 +149,7 @@ class _NewPostState extends State<NewPost> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(23)),
                           color: Color(0xFF434A58)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Cancel",
                           style: TextStyle(
@@ -155,7 +157,9 @@ class _NewPostState extends State<NewPost> {
                               fontWeight: FontWeight.w700,
                               fontSize: 18),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     ),
                   ],

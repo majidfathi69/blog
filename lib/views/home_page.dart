@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                           color: Color(0xFF3D72FE)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Prev",
                           style: TextStyle(
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                           color: Color(0xFF3D72FE)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "New Post",
                           style: TextStyle(
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                           color: Color(0xFF3D72FE)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Next",
                           style: TextStyle(
