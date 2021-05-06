@@ -15,7 +15,6 @@ class _NewPostState extends State<NewPost> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2A364D),
       appBar: AppBar(
         title: Text("New Post"),
         centerTitle: true,
@@ -115,52 +114,37 @@ class _NewPostState extends State<NewPost> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      height: 71,
-                      width: 151,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(23),
-                        ),
+                    RaisedButton(
+                      child: Text(
+                        "Post",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
                       ),
-                      child: OutlinedButton(
-                        child: Text(
-                          "Post",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: () {
-                          context
-                              .read<PostsModel>()
-                              .addPost(_title.text, _content.text);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => PostPage(),
-                            ),
-                          );
-                        },
-                      ),
+                      onPressed: () {
+                        context
+                            .read<PostsModel>()
+                            .addPost(_title.text, _content.text);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => PostPage(),
+                          ),
+                        );
+                      },
                     ),
-                    Container(
-                      height: 71,
-                      width: 151,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(23)),
-                          color: Color(0xFF434A58)),
-                      child: TextButton(
-                        child: Text(
-                          "Cancel",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
+                    RaisedButton(
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
                         ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
                       ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 ),

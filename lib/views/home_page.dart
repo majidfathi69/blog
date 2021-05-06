@@ -97,61 +97,42 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 71,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          color: Color(0xFF3D72FE)),
-                      child: TextButton(
-                        child: Text(
-                          "Prev",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: () {
-                          context.read<PostsModel>().prevPage();
-                        },
+                    RaisedButton(
+                      child: Text(
+                        "Prev",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
                       ),
+                      onPressed: () {
+                        context.read<PostsModel>().prevPage();
+                      },
                     ),
-                    Container(
-                      height: 71,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          color: Color(0xFF3D72FE)),
-                      child: TextButton(
-                        child: Text(
-                          "New Post",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: () {
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (context) => NewPost());
-                        },
+                    RaisedButton(
+                      child: Text(
+                        "New Post",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
                       ),
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context, builder: (context) => NewPost());
+                      },
                     ),
-                    Container(
-                      height: 71,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                          color: Color(0xFF3D72FE)),
-                      child: TextButton(
-                        child: Text(
-                          "Next",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: () {
-                          context.read<PostsModel>().nexPage();
-                        },
+                    RaisedButton(
+                      child: Text(
+                        "Next",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18),
                       ),
+                      onPressed: () {
+                        context.read<PostsModel>().nexPage();
+                      },
                     ),
                   ],
                 ),

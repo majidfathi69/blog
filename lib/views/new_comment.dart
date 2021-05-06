@@ -9,7 +9,6 @@ class _NewCommentState extends State<NewComment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2A364D),
       appBar: AppBar(
         title: Text("Comment"),
         centerTitle: true,
@@ -70,42 +69,28 @@ class _NewCommentState extends State<NewComment> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      height: 71,
-                      width: 151,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(23)),
-                          color: Color(0xFF3D72FE)),
-                      child: TextButton(
-                        child: Text(
-                          "Comment",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                    Container(
-                      height: 71,
-                      width: 151,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(23)),
-                          color: Color(0xFF434A58)),
-                      child: TextButton(
-                        child: Text(
-                          "Cancel",
-                          style: TextStyle(
+                    RaisedButton(
+                      child: Text(
+                        "Comment",
+                        style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w700,
-                            fontSize: 18,
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                            fontSize: 18),
                       ),
+                      onPressed: () {},
+                    ),
+                    RaisedButton(
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 ),

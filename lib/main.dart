@@ -19,9 +19,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<PostsModel>().fetchPosts();
     return MaterialApp(
-      title: 'وبلاگ کاپیتان',
+      title: 'وبلاگ',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0XFF212845),
+        scaffoldBackgroundColor: Color(0xFF2A364D),
+        primarySwatch: Colors.yellow,
+        buttonColor: Color(0XFFF8D320),
+        buttonTheme: ButtonThemeData(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          buttonColor: Color(0xFF3D72FE),
+          textTheme: ButtonTextTheme.normal,
+          // minWidth: 150,
+          height: 45,
+          colorScheme: ColorScheme.light(),
+        ),
       ),
       home: HomePage(),
     );
