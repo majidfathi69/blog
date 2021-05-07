@@ -25,6 +25,16 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF2A364D),
         primarySwatch: Colors.yellow,
         buttonColor: Color(0XFFF8D320),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+            textStyle:
+                MaterialStateProperty.all<TextStyle>(TextStyle(fontSize: 18)),
+          ),
+        ),
         buttonTheme: ButtonThemeData(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),

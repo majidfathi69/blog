@@ -109,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                         context.read<PostsModel>().prevPage();
                       },
                     ),
-                    RaisedButton(
+                    TextButton(
                       child: Text(
                         "New Post",
                         style: TextStyle(
