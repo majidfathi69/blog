@@ -114,14 +114,8 @@ class _NewPostState extends State<NewPost> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text(
-                        "Post",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
+                    OutlinedButton(
+                      child: Text("Post"),
                       onPressed: () {
                         context
                             .read<PostsModel>()
@@ -133,15 +127,8 @@ class _NewPostState extends State<NewPost> {
                         );
                       },
                     ),
-                    RaisedButton(
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                        ),
-                      ),
+                    OutlinedButton(
+                      child: Text("Cancel"),
                       onPressed: () {
                         Navigator.pop(context);
                       },

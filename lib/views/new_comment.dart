@@ -69,25 +69,12 @@ class _NewCommentState extends State<NewComment> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    RaisedButton(
-                      child: Text(
-                        "Comment",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
+                    OutlinedButton(
+                      child: Text("Comment"),
                       onPressed: () {},
                     ),
-                    RaisedButton(
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                        ),
-                      ),
+                    OutlinedButton(
+                      child: Text("Cancel"),
                       onPressed: () {
                         Navigator.pop(context);
                       },

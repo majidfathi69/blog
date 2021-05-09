@@ -54,7 +54,7 @@ class _PostBodyState extends State<PostBody> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      "The cheetah (Acinonyx jubatus) is a large cat native to Africa and central Iran. It is the fastest land animal, estimated to be capable of running at 80 to 128 km/h (50 to 80 mph) with the fastest reliably recorded speeds being 93 and 98 km/h (58 and 61 mph), and as such has several adaptations for speed, including a light build, long thin legs and a long tail. It typically reaches 67–94 cm (26–37 in) at the shoulder, and the head-and-body length is between 1.1 and 1.5 m (3.6 and 4.9 ft). Adults weigh between 20 and 65 kg (44 and 143 lb). Its head is small, rounded, and has a short snout and black tear-like facial streaks. The coat is typically tawny to creamy white or pale buff and is mostly covered with evenly spaced, solid black spots. Four subspecies are recognised.",
+                      "The cheetah (Acinonyx jubatus) is a large cat native to Africa and central Iran.",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
@@ -67,27 +67,14 @@ class _PostBodyState extends State<PostBody> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(28, 20, 28, 20),
-              child: Container(
-                height: 71,
-                width: 319,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(23)),
-                    color: Color(0xFF3D72FE)),
-                child: TextButton(
-                  child: Text(
-                    "Comment",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18),
-                  ),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (context) => NewComment(),
-                    );
-                  },
-                ),
+              child: ElevatedButton(
+                child: Text("Comment"),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => NewComment(),
+                  );
+                },
               ),
             ),
           ],

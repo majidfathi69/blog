@@ -21,28 +21,50 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'وبلاگ',
       theme: ThemeData(
-        primaryColor: Color(0XFF212845),
+        // primaryColor: Color(0XFF212845),
         scaffoldBackgroundColor: Color(0xFF2A364D),
-        primarySwatch: Colors.yellow,
-        buttonColor: Color(0XFFF8D320),
+        // buttonColor: Color(0XFFF8D320),
         textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStateProperty.all<TextStyle>(
+              TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
           style: ButtonStyle(
             shape: MaterialStateProperty.all<OutlinedBorder>(
               RoundedRectangleBorder(),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            textStyle:
-                MaterialStateProperty.all<TextStyle>(TextStyle(fontSize: 18)),
+            side: MaterialStateProperty.all<BorderSide>(
+                BorderSide(color: Colors.white)),
+            textStyle: MaterialStateProperty.all<TextStyle>(TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            )),
           ),
         ),
-        buttonTheme: ButtonThemeData(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-          buttonColor: Color(0xFF3D72FE),
-          textTheme: ButtonTextTheme.normal,
-          // minWidth: 150,
-          height: 45,
-          colorScheme: ColorScheme.light(),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              // StadiumBorder(),
+              RoundedRectangleBorder(),
+            ),
+            padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                EdgeInsets.all(14)),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.blueAccent),
+            textStyle: MaterialStateProperty.all<TextStyle>(
+              TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
         ),
       ),
       home: HomePage(),

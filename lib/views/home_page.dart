@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final primary = Color(0xFF131A2A);
+  // final primary = Color(0xFF131A2A);
   bool _showFab = false;
 
   @override
@@ -91,51 +91,29 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 10),
-              child: Container(
-                height: 71,
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    RaisedButton(
-                      child: Text(
-                        "Prev",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
-                      onPressed: () {
-                        context.read<PostsModel>().prevPage();
-                      },
-                    ),
-                    TextButton(
-                      child: Text(
-                        "New Post",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                            context: context, builder: (context) => NewPost());
-                      },
-                    ),
-                    RaisedButton(
-                      child: Text(
-                        "Next",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 18),
-                      ),
-                      onPressed: () {
-                        context.read<PostsModel>().nexPage();
-                      },
-                    ),
-                  ],
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    child: Text("Prev"),
+                    onPressed: () {
+                      context.read<PostsModel>().prevPage();
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("New Post"),
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context, builder: (context) => NewPost());
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text("Next"),
+                    onPressed: () {
+                      context.read<PostsModel>().nexPage();
+                    },
+                  ),
+                ],
               ),
             ),
           ),
